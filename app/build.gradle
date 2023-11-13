@@ -1,0 +1,21 @@
+plugins {
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.9'
+}
+
+repositories {
+    mavenCentral()
+}
+
+javafx {
+    version = "19"
+    modules = [ 'javafx.base', 'javafx.controls', 'javafx.fxml', 'javafx.graphics', 'javafx.media', 'javafx.swing', 'javafx.web' ]
+}
+
+dependencies {
+
+	implementation group: 'org.openjfx.javafxplugin', name: 'org.openjfx.javafxplugin.gradle.plugin', version: '0.0.9', ext: 'pom'
+
+}
+
+mainClassName = 'swemilestone2.Main'
