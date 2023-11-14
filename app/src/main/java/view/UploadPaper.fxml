@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UploadPaperController">
+   <children>
+      <Pane prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <Label layoutX="40.0" layoutY="169.0" text="Click here to choose a paper to submit to the conference:" />
+            <Button fx:id="submitPaperButton" layoutX="352.0" layoutY="165.0" mnemonicParsing="false" onAction="#onButtonPressedSubmitPaper" text="Submit Paper" />
+            <Button fx:id="backButton" layoutX="14.0" layoutY="361.0" mnemonicParsing="false" onAction="#onButtonPressedBack" text="Back" />
+            <Button fx:id="exitButton" layoutX="487.0" layoutY="361.0" mnemonicParsing="false" onAction="#onButtonPressedExit" text="Logout and exit" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

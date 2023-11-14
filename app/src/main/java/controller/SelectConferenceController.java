@@ -9,18 +9,38 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 
 public class SelectConferenceController {
+	
+    @FXML
+    private TableView<?> conferencesTable;
+	
+	@FXML
+    private TableColumn<?, ?> conferenceDateColumn;
+
+    @FXML
+    private TableColumn<?, ?> nameColumn;
 
     @FXML
     private Button nextButton;
 
+    @FXML
+    private TableColumn<?, ?> reviewersColumn;
+    
     @FXML
     private Button saveButton;
 
     @FXML
     private Label selectConferenceLabel;
 
+    @FXML
+    private TableColumn<?, ?> submissionDateColumn;
+
+    @FXML
+    private TableColumn<?, ?> venueColumn;
+    
     @FXML
     void onButtonPressedNext(ActionEvent event) throws IOException {
     	// change scene to providePaperDetails
@@ -32,5 +52,6 @@ public class SelectConferenceController {
     void onButtonPressedSave(ActionEvent event) {
     	
     }
+
 }
 

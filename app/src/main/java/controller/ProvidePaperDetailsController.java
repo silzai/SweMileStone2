@@ -25,8 +25,14 @@ public class ProvidePaperDetailsController {
     }
 
     @FXML
-    void onButtonPressedNext(ActionEvent event) {
+    void onButtonPressedNext(ActionEvent event) throws IOException {
+    	// change scene to providePaperDetails
+		Stage currentStage = (Stage)nextButton.getScene().getWindow();
+		currentStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/UploadPaper.fxml")), 600, 400));
+    }
+    
+    @FXML
+    void onButtonPressedSave(ActionEvent event) {
 
     }
-
 }
