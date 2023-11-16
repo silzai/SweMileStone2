@@ -66,11 +66,11 @@ public class SelectConferenceController implements Initializable {
     //adding initialize method to initialize the conference TableView
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    	nameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
-    	conferenceDateColumn.setCellValueFactory(new PropertyValueFactory<>("ConferenceDate"));
-    	submissionDateColumn.setCellValueFactory(new PropertyValueFactory<>("PaperSubmissionDate"));
-    	venueColumn.setCellValueFactory(new PropertyValueFactory<>("Venue"));
-    	reviewersColumn.setCellValueFactory(new PropertyValueFactory<>("ReviewersList"));
+//    	nameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
+//    	conferenceDateColumn.setCellValueFactory(new PropertyValueFactory<>("ConferenceDate"));
+//    	submissionDateColumn.setCellValueFactory(new PropertyValueFactory<>("PaperSubmissionDate"));
+//    	venueColumn.setCellValueFactory(new PropertyValueFactory<>("Venue"));
+//    	reviewersColumn.setCellValueFactory(new PropertyValueFactory<>("ReviewersList"));
 //		observableList = FXCollections.observableArrayList(//PASS A LIST<> OF CONFERENCES AFTER FETCHING FROM .dat file);
     	 
     }

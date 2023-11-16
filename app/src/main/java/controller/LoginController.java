@@ -25,6 +25,9 @@ public class LoginController {
 
 	@FXML
 	private Button loginButton;
+	
+    @FXML
+    private Button registerButton;
 
 	@FXML
 	void login(ActionEvent event) throws IOException {
@@ -38,10 +41,7 @@ public class LoginController {
 			currentStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/SelectConferenceScene.fxml")), 600, 400));
 //			((Window) loginButton.getScene().getWindow()).hide();
 		} else
-			displayMessage("Generated credentials based on the provided information, you will now be logged in.", AlertType.INFORMATION);
-			// change scene to select conference
-			Stage currentStage = (Stage)loginButton.getScene().getWindow();
-			currentStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/SelectConferenceScene.fxml")), 600, 400));
+			displayMessage("Wrong Credentials, if you are a new user, please register.", AlertType.ERROR);
 	}
 
 	public void displayMessage(String message, AlertType type) {
@@ -51,4 +51,10 @@ public class LoginController {
 		alert.setContentText(message);
 		alert.showAndWait();
 	}
+	
+    @FXML
+    void onButtonPressedRegister(ActionEvent event) throws IOException {
+		Stage currentStage = (Stage)loginButton.getScene().getWindow();
+		currentStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/RegisterUser.fxml")), 600, 400));
+    }
 }

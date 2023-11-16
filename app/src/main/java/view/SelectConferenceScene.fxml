@@ -13,13 +13,13 @@
    <children>
       <BorderPane prefHeight="314.0" prefWidth="562.0">
          <center>
-            <TableView prefHeight="237.0" prefWidth="562.0" BorderPane.alignment="CENTER">
+            <TableView fx:id="conferencesTable" prefHeight="237.0" prefWidth="562.0" BorderPane.alignment="CENTER">
               <columns>
-                <TableColumn prefWidth="75.0" text="Name" />
-                <TableColumn prefWidth="115.20001220703125" text="Conference Date" />
-                  <TableColumn prefWidth="150.3999786376953" text="Paper Submission Date" />
-                  <TableColumn prefWidth="80.800048828125" text="Venue" />
-                  <TableColumn prefWidth="79.99993896484375" text="Reviewers" />
+                <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Name" />
+                <TableColumn fx:id="conferenceDateColumn" prefWidth="115.20001220703125" text="Conference Date" />
+                  <TableColumn fx:id="submissionDateColumn" prefWidth="150.3999786376953" text="Paper Submission Date" />
+                  <TableColumn fx:id="venueColumn" prefWidth="80.800048828125" text="Venue" />
+                  <TableColumn fx:id="reviewersColumn" prefWidth="79.99993896484375" text="Reviewers" />
               </columns>
             </TableView>
          </center>

@@ -15,7 +15,13 @@ javafx {
 dependencies {
 
 	implementation group: 'org.openjfx.javafxplugin', name: 'org.openjfx.javafxplugin.gradle.plugin', version: '0.0.9', ext: 'pom'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 
+}
+
+test {
+    useJUnitPlatform()
 }
 
 mainClassName = 'swemilestone2.Main'
