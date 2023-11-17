@@ -1,6 +1,8 @@
 package model;
 
-public class Author extends User{
+import java.io.Serializable;
+
+public class Author extends User implements Serializable{
 
 	private CreditCard creditCard;
 	private Paper[] papersList;
