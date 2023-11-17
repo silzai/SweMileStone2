@@ -1,19 +1,21 @@
 package model;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.*;
 public class Conference implements Serializable{
 	private String name;
-	private Date conferenceDate;
+	private Calendar conferenceDate;
 	private Venue venue;
 	private List<Reviewer> reviewersList;
 	private String conferenceCode;
-	private Date paperSubmissionDate;
+	private Calendar paperSubmissionDate;
 	private Proceedings conferenceProceedings;
 	private List<Paper> acceptedPapersList;
-	private Date reviewResultDeadline;
+	private Calendar reviewResultDeadline;
 	private List<Author> registeredAuthors;
 	private List<Paper> rejectedPapersList;
 	private List<Paper> initiallySubmittedPapersList;
+	private List<Author> authorsThatSubmittedPapers;
 
 	/**
 	 * 
@@ -23,9 +25,14 @@ public class Conference implements Serializable{
 	 * @param venue
 	 * @param reviewersList
 	 */
-	
-	public Conference(String name, Date conferenceDate, Date paperSubmissionDate, Venue venue, List<Reviewer> reviewersList) {
+	public Conference(String name, Calendar conferenceDate, Calendar paperSubmissionDate, Venue venue, List<Reviewer> reviewersList) {
 		
+	}
+	
+	public Conference() {};
+	
+	public String getVenueName() {
+		return venue.getName();
 	}
 
 	public String getName() {
@@ -36,11 +43,17 @@ public class Conference implements Serializable{
 		this.name = name;
 	}
 
-	public Date getConferenceDate() {
+	public Calendar getConferenceDate() {
 		return conferenceDate;
 	}
+	
+	public String getConferenceDateString() {
+        SimpleDateFormat sm = new SimpleDateFormat("dd-mm-yyyy");
+        
+        return sm.format(this.conferenceDate.getTime());
+	}
 
-	public void setConferenceDate(Date conferenceDate) {
+	public void setConferenceDate(Calendar conferenceDate) {
 		this.conferenceDate = conferenceDate;
 	}
 
@@ -68,11 +81,17 @@ public class Conference implements Serializable{
 		this.conferenceCode = conferenceCode;
 	}
 
-	public Date getPaperSubmissionDate() {
+	public Calendar getPaperSubmissionDate() {
 		return paperSubmissionDate;
 	}
+	
+	public String getPaperSubmissionDateString() {
+        SimpleDateFormat sm = new SimpleDateFormat("dd-mm-yyyy");
+        
+        return sm.format(this.paperSubmissionDate.getTime());
+	}
 
-	public void setPaperSubmissionDate(Date paperSubmittionDate) {
+	public void setPaperSubmissionDate(Calendar paperSubmittionDate) {
 		this.paperSubmissionDate = paperSubmittionDate;
 	}
 
@@ -92,11 +111,11 @@ public class Conference implements Serializable{
 		this.acceptedPapersList = acceptedPapersList;
 	}
 
-	public Date getReviewResultDeadline() {
+	public Calendar getReviewResultDeadline() {
 		return reviewResultDeadline;
 	}
 
-	public void setReviewResultDeadline(Date reviewResultDeadline) {
+	public void setReviewResultDeadline(Calendar reviewResultDeadline) {
 		this.reviewResultDeadline = reviewResultDeadline;
 	}
 

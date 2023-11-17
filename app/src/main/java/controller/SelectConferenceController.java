@@ -2,7 +2,10 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -19,16 +22,17 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Conference;
+import model.ConferenceContainer;
+import model.Reviewer;
+import model.Venue;
 
 public class SelectConferenceController implements Initializable {
-	
-	private ObservableList<Conference> observableList;
 	
     @FXML
     private TableView<Conference> conferencesTable;
 	
 	@FXML
-    private TableColumn<Conference, Date> conferenceDateColumn;
+    private TableColumn<Conference, String> conferenceDateColumn;
 
     @FXML
     private TableColumn<Conference, String> nameColumn;
@@ -46,7 +50,7 @@ public class SelectConferenceController implements Initializable {
     private Label selectConferenceLabel;
 
     @FXML
-    private TableColumn<Conference, Date> submissionDateColumn;
+    private TableColumn<Conference, String> submissionDateColumn;
 
     @FXML
     private TableColumn<Conference, String> venueColumn;
@@ -60,19 +64,38 @@ public class SelectConferenceController implements Initializable {
 
     @FXML
     void onButtonPressedSave(ActionEvent event) {
-    	
+    	if (conferencesTable.getSelectionModel().getSelectedItem() != null)
+    		System.out.println(conferencesTable.getSelectionModel().getSelectedItem().getName());
     }
     
     //adding initialize method to initialize the conference TableView
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-//    	nameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
-//    	conferenceDateColumn.setCellValueFactory(new PropertyValueFactory<>("ConferenceDate"));
-//    	submissionDateColumn.setCellValueFactory(new PropertyValueFactory<>("PaperSubmissionDate"));
-//    	venueColumn.setCellValueFactory(new PropertyValueFactory<>("Venue"));
-//    	reviewersColumn.setCellValueFactory(new PropertyValueFactory<>("ReviewersList"));
-//		observableList = FXCollections.observableArrayList(//PASS A LIST<> OF CONFERENCES AFTER FETCHING FROM .dat file);
-    	 
+    	makeConferencesTable();
+    }
+    
+    public void makeConferencesTable() {
+    	
+    	Conference c1 = new Conference();
+    	c1.setName("Hassams Conference");
+    	c1.setConferenceDate(Calendar.getInstance());
+    	c1.setPaperSubmissionDate(Calendar.getInstance());
+    	c1.setVenue(new Venue("Hassams Venue", "matarQadeem"));
+    	List<Reviewer> rvs = new ArrayList<>();
+    	rvs.add(new Reviewer("hassam", "khaili", "123"));
+    	c1.setReviewersList(rvs);
+    	
+    	ConferenceContainer.addConference(c1);
+    	
+    	ObservableList<Conference> listOfConferences = FXCollections.observableArrayList(ConferenceContainer.getConferences());
+		conferencesTable.setItems(listOfConferences);
+		
+		nameColumn.setCellValueFactory(new PropertyValueFactory<Conference, String>("Name"));
+    	conferenceDateColumn.setCellValueFactory(new PropertyValueFactory<>("ConferenceDateString"));
+    	submissionDateColumn.setCellValueFactory(new PropertyValueFactory<>("PaperSubmissionDateString"));
+    	venueColumn.setCellValueFactory(new PropertyValueFactory<>("VenueName"));
+    	reviewersColumn.setCellValueFactory(new PropertyValueFactory<>("ReviewersList"));
+		
     }
     
 
