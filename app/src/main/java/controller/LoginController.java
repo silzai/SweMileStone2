@@ -33,11 +33,7 @@ public class LoginController {
 
 	@FXML
 	void login(ActionEvent event) throws IOException {
-<<<<<<< HEAD
-		Author author = (Author) AuthorContainer.login(username.getText(), password.getText());
-		if (author != null && author.isLogged()) {
-			displayMessage("Welcome " + author.getUsername() + ". You have successfully logged in.", AlertType.CONFIRMATION);
-=======
+
 		if(username.getText().equals("") && password.getText().equals("")) {
 			displayMessage("Please enter your username and password!", AlertType.ERROR);
 		}
@@ -45,7 +41,6 @@ public class LoginController {
 		User user = UserContainer.login(username.getText(), password.getText());
 		if (user != null && user.isLogged()) {
 			displayMessage("Welcome " + user.getFirstName() + ". You have successfully logged in.", AlertType.CONFIRMATION);
->>>>>>> 7073c44
 			username.clear();
 			password.clear();
 			// change scene to select conference

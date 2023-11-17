@@ -11,7 +11,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Author;
-import model.DataBuffer;
 import model.UserContainer;
 
 public class RegisterUserController {
@@ -45,13 +44,8 @@ public class RegisterUserController {
     	Author author = new Author(firstNameTextField.getText(), lastNameTextField.getText(), idTextField.getText());
     	//displaying the credentials to the user by adding the username/password to the label
     	credentialsLabel.setText("Username: " + author.getUsername() + "\npassword: " + author.getPassword());
-<<<<<<< HEAD
     	//storing the author in file permanently
-    	DataBuffer.authors.add(author);
-    	DataBuffer.storeAuthors();
-=======
     	UserContainer.storeData();
->>>>>>> 7073c44
     }
 
 }
