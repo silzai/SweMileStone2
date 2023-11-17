@@ -73,6 +73,8 @@ public class ProvidePaperDetailsController {
     	else listOfKeywords.add(keywordsTextField.getText());
     	
      	Paper paper = new Paper(paperTitleTextField.getText(), listOfAuthors, listOfKeywords, paperAbstractTextArea.getText());
+     	//displaying generated paper number
+     	paperNumberLabel.setText("Paper Number: " + String.valueOf(paper.getPaperNumber()) + ", The paper details have been saved.");
      	PaperContainer.addPaper(paper);
      	PaperContainer.storeData();
     }
