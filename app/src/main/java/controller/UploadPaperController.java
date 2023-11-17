@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -20,7 +21,13 @@ public class UploadPaperController {
     private Button exitButton;
 
     @FXML
+    private Label locationOfFileLabel;
+
+    @FXML
     private Button submitPaperButton;
+
+    @FXML
+    private Label successLabel;
     
     @FXML
     void onButtonPressedBack(ActionEvent event) throws IOException {
@@ -44,7 +51,9 @@ public class UploadPaperController {
     	File selectedFile = fileChooser.showOpenDialog(currentStage);
     	if (selectedFile != null) {
     		String filePath = selectedFile.getPath();
-    		System.out.println(filePath);
+    		locationOfFileLabel.setText(filePath);
+    		successLabel.setText("Your paper has been successfully submitted");
+    		
     	}
     }
 }
