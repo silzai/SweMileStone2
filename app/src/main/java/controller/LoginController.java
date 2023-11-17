@@ -31,9 +31,13 @@ public class LoginController {
 
 	@FXML
 	void login(ActionEvent event) throws IOException {
+		if(username.getText().equals("") && password.getText().equals("")) {
+			displayMessage("Please enter your username and password!", AlertType.ERROR);
+		}
+		else {
 		User user = UserContainer.login(username.getText(), password.getText());
 		if (user != null && user.isLogged()) {
-			displayMessage("Welcome " + user.getUsername() + ". You have successfully logged in.", AlertType.CONFIRMATION);
+			displayMessage("Welcome " + user.getFirstName() + ". You have successfully logged in.", AlertType.CONFIRMATION);
 			username.clear();
 			password.clear();
 			// change scene to select conference
@@ -41,7 +45,7 @@ public class LoginController {
 			currentStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/SelectConferenceScene.fxml")), 600, 400));
 //			((Window) loginButton.getScene().getWindow()).hide();
 		} else
-			displayMessage("Wrong Credentials, if you are a new user, please register.", AlertType.ERROR);
+			displayMessage("Wrong Credentials, if you are a new user, please register.", AlertType.ERROR);}
 	}
 
 	public void displayMessage(String message, AlertType type) {
