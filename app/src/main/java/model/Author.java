@@ -1,6 +1,8 @@
 package model;
 
-public class Author extends User{
+import java.io.Serializable;
+
+public class Author extends User implements Serializable{
 
 	private CreditCard creditCard;
 	private Paper[] papersList;
@@ -17,8 +19,9 @@ public class Author extends User{
 	 * @param password
 	 * @param Paper
 	 */
-	public Author(String firstName, String lastName, String id) {
+	public Author(String firstName, String lastName, String id){
 		super(firstName, lastName, id);
+		AuthorContainer.addUser(this);
 	}
 
 	public CreditCard getCreditCard() {

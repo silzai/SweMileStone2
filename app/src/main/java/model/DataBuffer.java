@@ -14,7 +14,8 @@ import java.util.List;
 
 public class DataBuffer {
 	
-	private static List<Conference> conferencesContainer;
+	public static List<Conference> conferences = new ArrayList<Conference>();
+	public static List<Author> authors = new ArrayList<Author>();
 	
 	private static void loadConferences() throws IOException {
 		BufferedReader br = new BufferedReader(new FileReader("data/conferencesContainer.dat"));
@@ -22,7 +23,7 @@ public class DataBuffer {
 			ObjectInputStream in;
 			try {
 				in = new ObjectInputStream(new FileInputStream("data/conferencesContainer.dat"));
-				conferencesContainer = (ArrayList<Conference>) in.readObject();
+				conferences = (ArrayList<Conference>) in.readObject();
 				in.close();
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -34,7 +35,7 @@ public class DataBuffer {
 	
 	public static List<Conference> getConferencesContainer() throws IOException{
 		loadConferences();
-		return conferencesContainer;
+		return conferences;
 	}
 	
 	public static void createDataForTesting() {
@@ -57,4 +58,38 @@ public class DataBuffer {
 		
 	}
 	
+	public static void storeAuthors() {
+		ObjectOutputStream out;
+		try {
+			out = new ObjectOutputStream(new FileOutputStream("data/authorContainer.dat"));
+			out.writeObject(AuthorContainer.Authors);
+			out.flush();
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static List<Author> loadAuthors() throws IOException {
+		
+		BufferedReader br = new BufferedReader(new FileReader("data/authorContainer.dat"));
+		if (!(br.readLine() == null)) {
+			ObjectInputStream in;
+			try {
+				in = new ObjectInputStream(new FileInputStream("data/authorContainer.dat"));
+				authors = (ArrayList<Author>) in.readObject();
+				in.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			
+			System.out.println(authors);
+			
+			return authors;
+		}
+		return null;
+		
+	}
 }

@@ -1,25 +1,32 @@
 package model;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserContainer {
-	public static List<User> Users = new ArrayList<User>();
+public class AuthorContainer {
+	public static List<Author> Authors = new ArrayList<>();
 
 	public static void addUser(User user) {
 		if (user!=null)
-			Users.add(user);
+			Authors.add((Author) user);
 	}
 	
-	public static User find(String username) {
-		for (User user : Users) 
+	public static User find(String username) throws IOException {
+		
+		if (Authors == null || Authors.size() == 0) {
+			DataBuffer.loadAuthors();
+			Authors = DataBuffer.authors;
+		}
+		
+		for (User user : Authors) 
 			if(user.getUsername().equals(username))
 				return user;
 		
 		return null;
 	}
 	
-	public static User login(String username, String password) {
+	public static User login(String username, String password) throws IOException {
 		User tempUser = find(username);
 		if (tempUser!=null && tempUser.isValid(username, password))
 		{
@@ -33,3 +40,4 @@ public class UserContainer {
 			user.logout();
 	}
 }
+

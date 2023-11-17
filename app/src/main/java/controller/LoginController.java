@@ -13,6 +13,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import model.Author;
+import model.AuthorContainer;
 import model.User;
 import model.UserContainer;
 
@@ -31,9 +33,9 @@ public class LoginController {
 
 	@FXML
 	void login(ActionEvent event) throws IOException {
-		User user = UserContainer.login(username.getText(), password.getText());
-		if (user != null && user.isLogged()) {
-			displayMessage("Welcome " + user.getUsername() + ". You have successfully logged in.", AlertType.CONFIRMATION);
+		Author author = (Author) AuthorContainer.login(username.getText(), password.getText());
+		if (author != null && author.isLogged()) {
+			displayMessage("Welcome " + author.getUsername() + ". You have successfully logged in.", AlertType.CONFIRMATION);
 			username.clear();
 			password.clear();
 			// change scene to select conference
