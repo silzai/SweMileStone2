@@ -1,5 +1,8 @@
 package model;
-public class User {
+
+import java.io.Serializable;
+
+public class User implements Serializable {
 	private String username="", password="";
 	private String id;
 	private String firstName;
@@ -90,8 +93,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [username=" + username + ", password=" + password + ", id=" + id + ", firstName=" + firstName
-				+ ", lastName=" + lastName + ", isLogged=" + isLogged + "]";
+		return "Name: " + firstName + " " + lastName;
 	}
 
 	
