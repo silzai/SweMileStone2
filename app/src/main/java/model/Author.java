@@ -21,7 +21,6 @@ public class Author extends User implements Serializable{
 	 */
 	public Author(String firstName, String lastName, String id){
 		super(firstName, lastName, id);
-		AuthorContainer.addUser(this);
 	}
 
 	public CreditCard getCreditCard() {
