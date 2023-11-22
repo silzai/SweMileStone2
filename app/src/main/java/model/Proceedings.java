@@ -1,5 +1,7 @@
 package model;
 
-public class Proceedings {
+import java.io.Serializable;
+
+public class Proceedings implements Serializable{
 
 }

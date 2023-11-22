@@ -1,13 +1,14 @@
 package controller;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,9 +22,12 @@ import javafx.stage.Stage;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import model.Author;
 import model.Conference;
 import model.ConferenceContainer;
 import model.Reviewer;
+import model.User;
+import model.UserContainer;
 import model.Venue;
 
 public class SelectConferenceController implements Initializable {
@@ -55,6 +59,8 @@ public class SelectConferenceController implements Initializable {
     @FXML
     private TableColumn<Conference, String> venueColumn;
     
+    public static Author LoggedInUser;
+    
     @FXML
     void onButtonPressedNext(ActionEvent event) throws IOException {
     	// change scene to providePaperDetails
@@ -64,8 +70,15 @@ public class SelectConferenceController implements Initializable {
 
     @FXML
     void onButtonPressedSave(ActionEvent event) {
-    	if (conferencesTable.getSelectionModel().getSelectedItem() != null)
-    		System.out.println(conferencesTable.getSelectionModel().getSelectedItem().getName());
+    	if (conferencesTable.getSelectionModel().getSelectedItem() != null) {
+    		if(LoggedInUser.getSelectedConference()!=null) {
+    			selectConferenceLabel.setText("You have already selected a conference!");
+    			UserContainer.storeData();
+    		}else {
+    		LoggedInUser.setSelectedConference(conferencesTable.getSelectionModel().getSelectedItem());
+    		selectConferenceLabel.setText("Your selected conference has been saved!");
+    	}}
+
     }
     
     //adding initialize method to initialize the conference TableView
@@ -80,12 +93,24 @@ public class SelectConferenceController implements Initializable {
     	c1.setName("Hassams Conference");
     	c1.setConferenceDate(Calendar.getInstance());
     	c1.setPaperSubmissionDate(Calendar.getInstance());
-    	c1.setVenue(new Venue("Hassams Venue", "matarQadeem"));
+    	c1.setVenue(new Venue("Hassams Venue", "Matar Qadeem"));
     	List<Reviewer> rvs = new ArrayList<>();
     	rvs.add(new Reviewer("hassam", "khaili", "123"));
     	c1.setReviewersList(rvs);
     	
+    	Conference c2 = new Conference();
+    	c2.setName("Basils Conference");
+    	c2.setConferenceDate(Calendar.getInstance());
+    	c2.setPaperSubmissionDate(Calendar.getInstance());
+    	c2.setVenue(new Venue("Basils Venue", "Wakrah"));
+    	rvs.add(new Reviewer("Basil", "Saeed", "456"));
+    	c2.setReviewersList(rvs);
+    	
+    	if(ConferenceContainer.getConferences().size()==0) {
+    	
     	ConferenceContainer.addConference(c1);
+    	ConferenceContainer.addConference(c2);
+    	}
     	
     	ObservableList<Conference> listOfConferences = FXCollections.observableArrayList(ConferenceContainer.getConferences());
 		conferencesTable.setItems(listOfConferences);
@@ -98,6 +123,8 @@ public class SelectConferenceController implements Initializable {
 		
     }
     
-
+    public static void getUserAfterLogging(User user) {
+    	LoggedInUser = (Author) user;
+    }
 }
 

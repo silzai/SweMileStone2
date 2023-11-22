@@ -3,6 +3,9 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.*;
 public class Conference implements Serializable{
+	
+	private static final long serialVersionUID = -4500023823003890590L;
+	
 	private String name;
 	private Calendar conferenceDate;
 	private Venue venue;
@@ -14,8 +17,7 @@ public class Conference implements Serializable{
 	private Calendar reviewResultDeadline;
 	private List<Author> registeredAuthors;
 	private List<Paper> rejectedPapersList;
-	private List<Paper> initiallySubmittedPapersList;
-	private List<Author> authorsThatSubmittedPapers;
+	private List<Paper> initiallySubmittedPapersList = new ArrayList<>();
 
 	/**
 	 * 
@@ -26,7 +28,7 @@ public class Conference implements Serializable{
 	 * @param reviewersList
 	 */
 	public Conference(String name, Calendar conferenceDate, Calendar paperSubmissionDate, Venue venue, List<Reviewer> reviewersList) {
-		
+
 	}
 	
 	public Conference() {};
@@ -131,16 +133,22 @@ public class Conference implements Serializable{
 		return rejectedPapersList;
 	}
 
-	public void setRejectedPapersList(List<Paper> rejectedPapersList) {
-		this.rejectedPapersList = rejectedPapersList;
+	public void addRejectedPapersList(Paper rejectedPaper) {
+		this.rejectedPapersList.add(rejectedPaper);
 	}
 
 	public List<Paper> getInitiallySubmittedPapersList() {
+		if(initiallySubmittedPapersList==null) {
+			return initiallySubmittedPapersList = new ArrayList<>();
+		}
 		return initiallySubmittedPapersList;
 	}
 
-	public void setInitiallySubmittedPapersList(List<Paper> initiallySubmittedPapersList) {
-		this.initiallySubmittedPapersList = initiallySubmittedPapersList;
+	public void addInitiallySubmittedPapersList(Paper initiallySubmittedPaper) {
+		if(initiallySubmittedPapersList==null) {
+			initiallySubmittedPapersList = new ArrayList<>();
+		}else {
+		this.initiallySubmittedPapersList.add(initiallySubmittedPaper);}
 	}
 
 	public Proceedings generateProceedings() {
@@ -202,5 +210,13 @@ public class Conference implements Serializable{
 	public void sendProceedingToPress(Proceedings conferenceProceedings) {
 		// TODO - implement Conference.sendProceedingToPress
 		throw new UnsupportedOperationException();
-	}}
+	}
+
+	@Override
+	public String toString() {
+		return "Conference [name=" + name + ", reviewersList=" + reviewersList + "]";
+	}
+	
+
+}
 

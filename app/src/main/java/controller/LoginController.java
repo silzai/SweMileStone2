@@ -14,7 +14,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import model.Author;
-import model.AuthorContainer;
 import model.User;
 import model.UserContainer;
 
@@ -40,6 +39,7 @@ public class LoginController {
 		else {
 		User user = UserContainer.login(username.getText(), password.getText());
 		if (user != null && user.isLogged()) {
+			SelectConferenceController.getUserAfterLogging(user);
 			displayMessage("Welcome " + user.getFirstName() + ". You have successfully logged in.", AlertType.CONFIRMATION);
 			username.clear();
 			password.clear();

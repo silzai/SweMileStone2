@@ -1,5 +1,7 @@
 package model;
 
-public class Reciept {
+import java.io.Serializable;
+
+public class Reciept implements Serializable {
 
 }

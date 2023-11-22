@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProvidePaperDetailsController">
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProvidePaperDetailsController">
    <children>
       <Pane prefHeight="400.0" prefWidth="600.0">
          <children>
@@ -24,7 +24,7 @@
             <TextField fx:id="listAuthorsTextField" layoutX="253.0" layoutY="98.0" />
             <Button fx:id="saveButton" layoutX="424.0" layoutY="361.0" mnemonicParsing="false" onAction="#onButtonPressedSave" text="Save" />
             <Label layoutX="251.0" layoutY="365.0" text="Click here to save paper details:" />
-            <Label fx:id="paperNumberLabel" layoutX="219.0" layoutY="325.0" prefHeight="17.0" prefWidth="229.0" text="(Generated paper number will appear here)" textFill="RED" />
+            <Label fx:id="paperNumberLabel" layoutX="219.0" layoutY="325.0" prefHeight="17.0" prefWidth="370.0" text="(Generated paper number will appear here)" textFill="RED" />
          </children>
       </Pane>
    </children>

@@ -1,5 +1,7 @@
 package model;
 
-public class MealPreference {
+import java.io.Serializable;
+
+public class MealPreference implements Serializable{
 
 }

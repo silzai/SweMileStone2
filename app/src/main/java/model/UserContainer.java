@@ -1,5 +1,6 @@
 package model;
 
+import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -12,8 +13,10 @@ public class UserContainer {
 	public static List<User> Users = new ArrayList<User>();
 
 	public static void addUser(User user) {
-		if (user!=null)
+		if (user!=null) {
 			Users.add(user);
+			storeData();}
+			
 	}
 	
 	public static User find(String username) {
@@ -26,7 +29,7 @@ public class UserContainer {
 	}
 	
 	public static User login(String username, String password) {
-		List<User> listOfUsers = loadData();
+		loadData();
 		User tempUser = find(username);
 		if (tempUser!=null && tempUser.isValid(username, password))
 		{
@@ -57,12 +60,13 @@ public class UserContainer {
 			in = new ObjectInputStream(new FileInputStream("data/authorDetailsContainer.dat"));
 			Users = (List<User>) in.readObject();
 			in.close();
-			return Users;
-		} catch (IOException e) {
+		} catch (EOFException e) {
+		 }
+		catch (IOException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return Users;
 	}
 }

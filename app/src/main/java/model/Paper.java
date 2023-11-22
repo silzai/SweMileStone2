@@ -1,6 +1,8 @@
 package model;
 
 import java.io.Serializable;
+
+import java.io.Serializable;
 import java.util.List;
 
 public class Paper implements Serializable{
@@ -28,4 +30,10 @@ public class Paper implements Serializable{
 		return this.paperNumber;
 	}
 
+	@Override
+	public String toString() {
+		return "Paper [paperTitle=" + paperTitle + ", listOfAuthors=" + listOfAuthors + ", keywords=" + keywords
+				+ ", paperAbstract=" + paperAbstract + ", paperNumber=" + paperNumber + "]";
+	}
+	
 }

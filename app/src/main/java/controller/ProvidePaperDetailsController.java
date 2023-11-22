@@ -15,8 +15,11 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Author;
+import model.ConferenceContainer;
 import model.Paper;
 import model.PaperContainer;
+import model.User;
+import model.UserContainer;
 
 public class ProvidePaperDetailsController {
 
@@ -43,6 +46,7 @@ public class ProvidePaperDetailsController {
 
 	    @FXML
 	    private Button saveButton;
+	    
 
     @FXML
     void onButtonPressedBack(ActionEvent event) throws IOException {
@@ -60,6 +64,8 @@ public class ProvidePaperDetailsController {
     
     @FXML
     void onButtonPressedSave(ActionEvent event) {
+    	System.out.println(SelectConferenceController.LoggedInUser.getPapersList());
+    	if(SelectConferenceController.LoggedInUser.getPapersList().size()<3)   {
     	List<String> listOfAuthors = new ArrayList<>();
     	//checking if there are multiple authors
     	if (listAuthorsTextField.getText().contains(","))
@@ -75,7 +81,16 @@ public class ProvidePaperDetailsController {
      	Paper paper = new Paper(paperTitleTextField.getText(), listOfAuthors, listOfKeywords, paperAbstractTextArea.getText());
      	//displaying generated paper number
      	paperNumberLabel.setText("Paper Number: " + String.valueOf(paper.getPaperNumber()) + ", The paper details have been saved.");
-     	PaperContainer.addPaper(paper);
-     	PaperContainer.storeData();
+     	
+     	SelectConferenceController.LoggedInUser.addPapersList(paper);
+     	SelectConferenceController.LoggedInUser.getSelectedConference().addInitiallySubmittedPapersList(paper);
+     	UserContainer.storeData();
+     	ConferenceContainer.storeConferenceData();
+    } else {
+    	paperNumberLabel.setText("The number of papers exceeded the limit!");
     }
+    	
+    }
+   
+   
 }

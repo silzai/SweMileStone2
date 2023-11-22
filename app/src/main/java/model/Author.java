@@ -1,16 +1,19 @@
 package model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Author extends User implements Serializable{
+	
+	
 
 	private CreditCard creditCard;
-	private Paper[] papersList;
+	private  List<Paper> papersList = new ArrayList<>();
 	private MealPreference mealPreference;
 	private Reciept receipt;
 	private boolean decisionOnPaper;
 	private Reservation reservationn;
-	private String authorLastName;
 	private Conference selectedConference;
 
 	/**
@@ -21,6 +24,7 @@ public class Author extends User implements Serializable{
 	 */
 	public Author(String firstName, String lastName, String id){
 		super(firstName, lastName, id);
+		this.selectedConference = null;
 	}
 
 	public CreditCard getCreditCard() {
@@ -31,12 +35,19 @@ public class Author extends User implements Serializable{
 		this.creditCard = creditCard;
 	}
 
-	public Paper[] getPapersList() {
+	public List<Paper>getPapersList() {
+		if(papersList==null) {
+			return papersList = new ArrayList<>();
+		}
 		return papersList;
 	}
 
-	public void setPapersList(Paper[] papersList) {
-		this.papersList = papersList;
+	public void addPapersList(Paper paper) {
+		if(papersList==null) {
+			papersList = new ArrayList<>();
+		}
+		else {
+		this.papersList.add(paper);}
 	}
 
 	public MealPreference getMealPreference() {
@@ -71,14 +82,6 @@ public class Author extends User implements Serializable{
 		this.reservationn = reservationn;
 	}
 
-	public String getAuthorLastName() {
-		return authorLastName;
-	}
-
-	public void setAuthorLastName(String authorLastName) {
-		this.authorLastName = authorLastName;
-	}
-
 	public Conference getSelectedConference() {
 		return selectedConference;
 	}
@@ -102,5 +105,11 @@ public class Author extends User implements Serializable{
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
+	public String toString() {
+		return "Author "+super.toString()+ "[reservationn=" + reservationn + ", selectedConference=" + selectedConference + "]"+ "papers: " + papersList;
+	}
+	
+	
 }
 
