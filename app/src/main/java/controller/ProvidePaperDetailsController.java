@@ -66,9 +66,14 @@ public class ProvidePaperDetailsController {
     
     @FXML
     void onButtonPressedSave(ActionEvent event) throws IOException {
-    	System.out.println(SelectConferenceController.LoggedInUser.getPapersList());
+ 
     	if(SelectConferenceController.LoggedInUser.getPapersList().size()<3)   {
     	List<String> listOfAuthors = new ArrayList<>();
+    	if(listAuthorsTextField.getText().equals("") || keywordsTextField.getText().equals("")|| paperAbstractTextArea.getText().equals("")
+    			|| paperTitleTextField.getText().equals("")) {
+    		paperNumberLabel.setText("You have not entered in all fields! Please enter in all fileds");
+    	}
+    	
     	//checking if there are multiple authors
     	if (listAuthorsTextField.getText().contains(","))
     		listOfAuthors = Arrays.asList( listAuthorsTextField.getText().split(","));
@@ -80,6 +85,8 @@ public class ProvidePaperDetailsController {
     		listOfKeywords = Arrays.asList( keywordsTextField.getText().split(","));
     	else listOfKeywords.add(keywordsTextField.getText());
     	
+    	if(!(listAuthorsTextField.getText().equals("") || keywordsTextField.getText().equals("")|| paperAbstractTextArea.getText().equals("")
+    			|| paperTitleTextField.getText().equals(""))) {
      	Paper paper = new Paper(paperTitleTextField.getText(), listOfAuthors, listOfKeywords, paperAbstractTextArea.getText());
      	//displaying generated paper number
      	paperNumberLabel.setText("Paper Number: " + String.valueOf(paper.getPaperNumber()) + ", The paper details have been saved.");
@@ -87,7 +94,7 @@ public class ProvidePaperDetailsController {
      	SelectConferenceController.LoggedInUser.addPapersList(paper);
      	SelectConferenceController.LoggedInUser.getSelectedConference().addInitiallySubmittedPapersList(paper);
      	UserContainer.storeData();
-     	ConferenceContainer.storeConferenceData();
+     	ConferenceContainer.storeConferenceData();}
     	} else {
     	displayMessage("The number of papers exceeded the limit, session has been terminated.", AlertType.ERROR);
     	// change scene to login (terminating the session)

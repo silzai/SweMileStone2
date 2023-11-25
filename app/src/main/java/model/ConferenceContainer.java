@@ -1,5 +1,6 @@
 package model;
 
+import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -42,7 +43,9 @@ public class ConferenceContainer {
 			conferencesList = (List<Conference>) in.readObject();
 			in.close();
 		
-		} catch (IOException e) {
+		}catch (EOFException e) {
+		}  
+		catch (IOException e) {
 			System.out.println("IOException");
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
