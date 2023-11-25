@@ -23,7 +23,6 @@ public class ConferenceContainer {
 		
 	}
 	
-	
 	public static void storeConferenceData() {
 		ObjectOutputStream out;
 		try {

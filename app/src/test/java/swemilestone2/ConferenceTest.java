@@ -13,12 +13,6 @@ class ConferenceTest {
 	Conference conf = new Conference();
 	
 	@Test 
-	void testConference() {
-		testGetName();
-		testAddInitiallySubmittedPapersList();
-	}
-	
-	@Test 
 	void testGetName() {
 		conf.setName("new conference");
 		assertEquals("new conference", conf.getName());

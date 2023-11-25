@@ -4,11 +4,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import model.ConferenceContainer;
+
 class ConferenceContainerTest {
 
 	@Test
-	void test() {
-		fail("Not yet implemented");
+	void testGetConferences() {
+		assertTrue(ConferenceContainer.getConferences().size() > 0);
 	}
 
 }

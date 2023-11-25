@@ -15,9 +15,9 @@ class PaperTest {
 		assertEquals("new paper", paper.getPaperTitle());
 	}
 	
-	@Test
+	@Test // generatePaperNumber() increments by 1 each time for new paper, so this test is set as follows:
 	void testGeneratePaperNumber() {
-		assertEquals(null, null);
+		assertEquals(paper.getPaperNumber() + 1, new Paper(null, null, null, null).getPaperNumber());
 	}
 
 }
