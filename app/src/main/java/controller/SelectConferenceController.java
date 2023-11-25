@@ -72,7 +72,8 @@ public class SelectConferenceController implements Initializable {
     void onButtonPressedSave(ActionEvent event) {
     	if (conferencesTable.getSelectionModel().getSelectedItem() != null) {
     		if(LoggedInUser.getSelectedConference()!=null) {
-    			selectConferenceLabel.setText("You have already selected a conference!");
+    			selectConferenceLabel.setText("You have already selected: " + 
+    		LoggedInUser.getSelectedConference().getName() + "! You cannot register in anymore conferences." );
     			UserContainer.storeData();
     		}else {
     		LoggedInUser.setSelectedConference(conferencesTable.getSelectionModel().getSelectedItem());

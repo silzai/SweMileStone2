@@ -29,6 +29,10 @@ public class Paper implements Serializable{
 	public int getPaperNumber() {
 		return this.paperNumber;
 	}
+	
+	public String getPaperTitle() {
+		return this.paperTitle;
+	}
 
 	@Override
 	public String toString() {

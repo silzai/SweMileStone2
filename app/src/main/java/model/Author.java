@@ -107,7 +107,7 @@ public class Author extends User implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Author "+super.toString()+ "[reservationn=" + reservationn + ", selectedConference=" + selectedConference + "]"+ "papers: " + papersList;
+		return "Author "+super.toString()+ "[reservation=" + reservationn + ", selectedConference=" + selectedConference + "]"+ "papers: " + papersList;
 	}
 	
 	

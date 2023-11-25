@@ -10,14 +10,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import model.Author;
 import model.ConferenceContainer;
 import model.Paper;
-import model.PaperContainer;
 import model.User;
 import model.UserContainer;
 
@@ -57,13 +59,13 @@ public class ProvidePaperDetailsController {
 
     @FXML
     void onButtonPressedNext(ActionEvent event) throws IOException {
-    	// change scene to providePaperDetails
+    	// change scene to uploadPaper
 		Stage currentStage = (Stage)nextButton.getScene().getWindow();
 		currentStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/UploadPaper.fxml")), 600, 400));
     }
     
     @FXML
-    void onButtonPressedSave(ActionEvent event) {
+    void onButtonPressedSave(ActionEvent event) throws IOException {
     	System.out.println(SelectConferenceController.LoggedInUser.getPapersList());
     	if(SelectConferenceController.LoggedInUser.getPapersList().size()<3)   {
     	List<String> listOfAuthors = new ArrayList<>();
@@ -86,11 +88,22 @@ public class ProvidePaperDetailsController {
      	SelectConferenceController.LoggedInUser.getSelectedConference().addInitiallySubmittedPapersList(paper);
      	UserContainer.storeData();
      	ConferenceContainer.storeConferenceData();
-    } else {
+    	} else {
+    	displayMessage("The number of papers exceeded the limit, session has been terminated.", AlertType.ERROR);
+    	// change scene to login (terminating the session)
+    	Stage currentStage = (Stage)nextButton.getScene().getWindow();
+    	currentStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/Login.fxml")), 600, 400));
     	paperNumberLabel.setText("The number of papers exceeded the limit!");
-    }
+    	}
     	
     }
-   
+    
+	public void displayMessage(String message, AlertType type) {
+		Alert alert = new Alert(type);
+		alert.setTitle("System Message");
+		alert.setHeaderText(null);
+		alert.setContentText(message);
+		alert.showAndWait();
+	}
    
 }

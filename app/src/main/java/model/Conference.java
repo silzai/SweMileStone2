@@ -2,6 +2,9 @@ package model;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.*;
+/**
+ * Only the relevant functions to the use-case specification are working
+ */
 public class Conference implements Serializable{
 	
 	private static final long serialVersionUID = -4500023823003890590L;
@@ -20,7 +23,6 @@ public class Conference implements Serializable{
 	private List<Paper> initiallySubmittedPapersList = new ArrayList<>();
 
 	/**
-	 * 
 	 * @param name
 	 * @param conferenceDate
 	 * @param paperSubmittionDate
@@ -28,7 +30,7 @@ public class Conference implements Serializable{
 	 * @param reviewersList
 	 */
 	public Conference(String name, Calendar conferenceDate, Calendar paperSubmissionDate, Venue venue, List<Reviewer> reviewersList) {
-
+		
 	}
 	
 	public Conference() {};
